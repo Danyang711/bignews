@@ -44,6 +44,7 @@
       $('.input_sub').click(function(e) {
         //  阻止提交按钮的默认行为
         e.preventDefault();
+
         var username = $('.input_txt').val().trim();
         var password = $('.input_pass').val().trim();
 
@@ -61,9 +62,12 @@
           },
           success: function(backData) {
             if (backData.code === 400) {
+              // 错误
               alert(backData.msg);
             } else if (backData.code === 200) {
               alert(backData.msg);
+              // token
+              window.locat
               window.location.href = './index.html';
             }
           }

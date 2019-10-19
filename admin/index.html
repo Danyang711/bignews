@@ -58,7 +58,15 @@
   <script>
     $(function() {
       //二级菜单的展开收起
-      $(' .level01. ')
+      $('.level01:eq(1)').click(function() {
+        //隔壁的level02展开或者收起
+        $(this).next('.level02').slideToggle();
+      })
+
+      //点击高亮效果
+      $('.level01').click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+      })
     })
   </script>
 </body>
