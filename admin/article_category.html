@@ -97,13 +97,14 @@
   </script>
 
   <script>
-    //  获取文章类别数据
     $(function() {
+      //  获取文章类别数据
       function getCategoryData() {
         $.ajax({
           url: BigNew.category_list,
+          type: 'get',
           success: function(backData) {
-            console.log(backData);
+            // console.log(backData);
             // 调用模板引擎传入数据
             var html = template("cateTem", backData);
             // //   渲染页面
@@ -114,6 +115,30 @@
       }
       getCategoryData();
 
+      //  点击新增分类
+      $('.btn-primary').click(function() {
+        //   获取数据
+        var name = $('.cate-name').val();
+        var slug = $('.cate-slug').val();
+
+        $.ajax({
+          url: BigNew.category_add,
+          type: 'post',
+          data: {
+            name: name,
+            slug: slug
+          },
+          success: function(backData) {
+            // console.log(backData);
+            if (backData.code === 201) {
+              $('#myModal').modal('hide');
+              getCategoryData();
+            }
+
+          }
+        })
+
+      })
 
 
 
