@@ -74,7 +74,7 @@
       $.ajax({
         url: BigNew.user_detail,
         success: function(backData) {
-          //   console.log(backData);
+          console.log(backData);
 
           for (const key in backData.data) {
             $("." + key).val(backData.data[key]);
@@ -83,6 +83,29 @@
           $('.user_pic').attr('src', backData.data.userPic);
         }
       })
+
+      //   个人数据修改
+      $('.btn-edit').click(function(e) {
+        e.preventDefault();
+        // var data=new FormData(document.querySelector('form'));
+        var data = new FormData($('form')[0]);
+
+        $.ajax({
+          url: BigNew.user_edit,
+          type: 'post',
+          data: data,
+          //不设置类型
+          contentType: false,
+          // 不处理数据
+          processData: false,
+          success: function(backData) {
+            console.log(backData);
+
+          }
+
+        })
+      })
+
     })
   </script>
 </body>
