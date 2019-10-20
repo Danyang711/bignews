@@ -67,6 +67,28 @@
       $('.level01').click(function() {
         $(this).addClass('active').siblings().removeClass('active');
       })
+
+      //获取用户信息
+      $.ajax({
+        url: 'http://localhost:8080/api/v1/admin/user/info',
+        headers: {
+          Authorization: window.localStorage.getItem('token')
+        },
+        success: function(backData) {
+          // 设置左侧的头像和名字
+          $('.user_info>img').attr('scr', backData.data.userPic);
+          $('.user_info>span').text('欢迎' + backData.data.nickname);
+          // 设置右侧顶部的头像
+          $('.user_center_link>img').attr('scr', backData.data.userPic);
+        },
+        //  请求失败之后的回调函数
+        // Forbidden：没有权限访问此网站（403）
+        error: function(backData) {
+          if (backData.statusText === 'Forbidden') {
+            window.location.href = './login.html';
+          }
+        }
+      })
     })
   </script>
 </body>
