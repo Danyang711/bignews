@@ -90,6 +90,21 @@
         //   }
         // }
       })
+
+      //退出功能
+      $('.logout').click(function() {
+        if (window.confirm('您确定要退出吗？')) {
+          // 退出缓存
+          window.localStorage.removeItem('token');
+          // 去登录页
+          window.location.href = './login.html';
+        }
+      })
+
+
+
+
+
     })
   </script>
 </body>
