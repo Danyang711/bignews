@@ -71,9 +71,9 @@
       //获取用户信息
       $.ajax({
         url: 'http://localhost:8080/api/v1/admin/user/info',
-        headers: {
-          Authorization: window.localStorage.getItem('token')
-        },
+        // headers: {
+        //   Authorization: window.localStorage.getItem('token')
+        // },
         success: function(backData) {
           // 设置左侧的头像和名字
           $('.user_info>img').attr('scr', backData.data.userPic);
@@ -83,11 +83,11 @@
         },
         //  请求失败之后的回调函数
         // Forbidden：没有权限访问此网站（403）
-        error: function(backData) {
-          if (backData.statusText === 'Forbidden') {
-            window.location.href = './login.html';
-          }
-        }
+        // error: function(backData) {
+        //   if (backData.statusText === 'Forbidden') {
+        //     window.location.href = './login.html';
+        //   }
+        // }
       })
     })
   </script>
